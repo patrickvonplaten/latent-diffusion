@@ -131,8 +131,8 @@ if __name__ == "__main__":
             uc = None
             if opt.scale != 1.0:
                 uc = model.get_learned_conditioning(opt.n_samples * [""])
+            c = model.get_learned_conditioning(opt.n_samples * [prompt])
             for n in trange(opt.n_iter, desc="Sampling"):
-                c = model.get_learned_conditioning(opt.n_samples * [prompt])
                 shape = [4, opt.H//8, opt.W//8]
                 samples_ddim, _ = sampler.sample(S=opt.ddim_steps,
                                                  conditioning=c,
